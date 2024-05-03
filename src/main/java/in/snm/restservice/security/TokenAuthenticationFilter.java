@@ -48,11 +48,6 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        if (isWebhookRequest(request)) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         final String userMobileNo;
@@ -93,9 +88,4 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             response.getWriter().write(new ObjectMapper().writeValueAsString(exceptionResponse));
         }
     }
-
-    private boolean isWebhookRequest(HttpServletRequest request) {
-        return request.getServletPath().contains("/api/v1/payment/pg/callback") && request.getMethod().equals("POST");
-    }
-
 }

@@ -25,7 +25,6 @@ public class ApplicationSecurityConfig {
             //"/css/*",
             //"/js/*",
             "/api/v1/auth/**",
-            "/api/v1/payment/pg/callback"
     };
     private final TokenAuthenticationFilter tokenAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
